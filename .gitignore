@@ -1,0 +1,7 @@
+.vscode
+node_modules
+config.env
+/react-6/node_modules
+/static/originalData.json
+/static/usersOriginalData.json
+react-6/public/data.json

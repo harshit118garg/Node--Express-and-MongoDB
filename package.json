@@ -1,0 +1,19 @@
+{
+  "name": "node-express-mongodb",
+  "version": "1.0.0",
+  "description": "backend tutorial",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "harshit118garg",
+  "license": "ISC",
+  "devDependencies": {
+    "dotenv": "^16.3.1",
+    "morgan": "^1.10.0"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "mongoose": "^8.0.3"
+  }
+}
