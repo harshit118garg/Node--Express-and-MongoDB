@@ -5,7 +5,6 @@ const morgan = require("morgan");
 const cors = require("cors");
 const path = require("path");
 const productRouter = require("./routes/productRoutes");
-const userRouter = require("./routes/userRoutes");
 
 const PORT = process.env.PORT;
 const server = express();
@@ -43,7 +42,6 @@ server.use("*", (req, res) => {
 
 // routes middleware
 server.use("/products", productRouter.router);
-server.use("/users", userRouter.router);
 
 server.listen(PORT, () => {
   console.log(`Server started at port ${PORT}`);
