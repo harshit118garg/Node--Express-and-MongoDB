@@ -22,12 +22,12 @@ function App() {
   const [products, setProducts] = useState<ProductTypes[]>([]);
 
   const fetchProducts = async () => {
-    const res = await axios.get(BASEURL);
+    const res = await axios.get(`${BASEURL}/products`);
     setProducts(res.data);
   };
 
   const addNewProduct = async (newProduct: ProductTypes) => {
-    const res = await axios.post(BASEURL, newProduct);
+    const res = await axios.post(`${BASEURL}/products`, newProduct);
     alert(res.data.message);
     setProducts((productList) => [...productList, newProduct]);
   };

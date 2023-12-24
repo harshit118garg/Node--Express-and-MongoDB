@@ -10,4 +10,4 @@ export const initialProductDetailsState = {
   thumbnail: "",
 };
 
-export const BASEURL = `http://localhost:8080/products`;
+export const BASEURL = `http://localhost:8080`;
