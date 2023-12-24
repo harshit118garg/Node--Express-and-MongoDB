@@ -2,6 +2,7 @@ require("dotenv").config({ path: "../config.env" });
 const express = require("express");
 const mongoose = require("mongoose");
 const morgan = require("morgan");
+const cors = require("cors");
 const productRouter = require("./routes/productRoutes");
 const userRouter = require("./routes/userRoutes");
 
@@ -32,6 +33,7 @@ async function main() {
 
 // middleware
 server.use(express.json()); // middleware used for sending json/html files [body-parser]
+server.use(cors()); // middle ware to avoid cross origin issue issue
 server.use(morgan("short")); // middleware used for logging
 server.use(express.static("public")); // middleware used for static file hosting
 // routes middleware
