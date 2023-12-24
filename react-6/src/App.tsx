@@ -13,7 +13,6 @@ import ProductList from "./components/ProductList";
 import { useEffect, useState } from "react";
 import { ProductTypes } from "./definations/types";
 import axios from "axios";
-import { BASEURL } from "./definations/constants";
 
 const theme = extendBaseTheme({}, chakraTheme);
 
@@ -22,12 +21,12 @@ function App() {
   const [products, setProducts] = useState<ProductTypes[]>([]);
 
   const fetchProducts = async () => {
-    const res = await axios.get(`${BASEURL}/products`);
+    const res = await axios.get(`/products`);
     setProducts(res.data);
   };
 
   const addNewProduct = async (newProduct: ProductTypes) => {
-    const res = await axios.post(`${BASEURL}/products`, newProduct);
+    const res = await axios.post(`/products`, newProduct);
     alert(res.data.message);
     setProducts((productList) => [...productList, newProduct]);
   };

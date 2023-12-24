@@ -9,5 +9,3 @@ export const initialProductDetailsState = {
   category: "",
   thumbnail: "",
 };
-
-export const BASEURL = `http://localhost:8080`;
