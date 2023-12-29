@@ -1,0 +1,30 @@
+<div
+  class="flex-1 flex flex-col items-center bg-indigo-100"
+  style="font-family: 'Muli', sans-serif;"
+>
+  {{#if tasks}}
+    <div class="w-full pl-5 lg:pl-2 mb-4 mt-4">
+      <h1 class="text-3xl lg:text-4xl text-gray-700 font-extrabold">
+        My Tasks
+      </h1>
+    </div>
+    <div class="container ml-auto mr-auto flex flex-wrap items-start">
+      {{#each tasks}}
+        <div class="w-full md:w-1/2 lg:w-1/4 pl-5 pr-5 mb-5 lg:pl-2 lg:pr-2">
+          <div
+            class="bg-white rounded-lg m-h-64 p-2 transform hover:translate-y-2 hover:shadow-xl transition duration-300"
+          >
+            <h5
+              class="text-sm text-gray-500 font-bold tracking-widest mb-2 uppercase"
+            >{{this.title}}</h5>
+            <p>{{this.description}}</p>
+            <a
+              href="#"
+              class="bg-green-500 hover:bg-green-400 text-white px-4 py-2 inline-block mt-4 rounded"
+            >Read more</a>
+          </div>
+        </div>
+      {{/each}}
+    </div>
+  {{/if}}
+</div>
