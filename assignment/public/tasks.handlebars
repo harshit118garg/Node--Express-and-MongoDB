@@ -1,16 +1,30 @@
-<div
-  class="flex-1 flex flex-col items-center bg-indigo-100"
-  style="font-family: 'Muli', sans-serif;"
->
+<div class="flex-1 flex flex-col items-center bg-indigo-100">
+  <div
+    class="container flex flex-col sm:flex-row p-5 lg:p-2 mb-4 mt-4 justify-between items-center"
+  >
+    <div></div>
+    <h1 class="text-3xl lg:text-4xl text-gray-700 text-center font-extrabold">
+      My Tasks
+    </h1>
+    <a
+      href="/add"
+      class="bg-blue-500 hover:bg-green-400 text-white hover:text-black transition duration-300 px-3 py-1 inline-block rounded"
+    >
+      <span><i class="fa-solid fa-plus"></i></span>
+      New Task
+    </a>
+  </div>
   {{#if tasks}}
-    <div class="w-full pl-5 lg:pl-2 mb-4 mt-4">
-      <h1 class="text-3xl lg:text-4xl text-gray-700 font-extrabold">
-        My Tasks
-      </h1>
-    </div>
-    <div class="container ml-auto mr-auto flex flex-wrap items-start">
+    <div
+      class="container m-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 items-center p-12"
+    >
       {{#each tasks}}
-        <div class="w-full md:w-1/2 lg:w-1/4 pl-5 pr-5 mb-5 lg:pl-2 lg:pr-2">
+        <div
+          class="w-full pl-5 pr-5 mb-5 lg:pl-2 lg:pr-2"
+          data-target="card"
+          role="card-{{this.taskID}}"
+          id={{this.taskID}}
+        >
           <div
             class="bg-white rounded-lg m-h-64 p-2 transform hover:translate-y-2 hover:shadow-xl transition duration-300"
           >
@@ -18,10 +32,17 @@
               class="text-sm text-gray-500 font-bold tracking-widest mb-2 uppercase"
             >{{this.title}}</h5>
             <p>{{this.description}}</p>
-            <a
-              href="#"
-              class="bg-green-500 hover:bg-green-400 text-white px-4 py-2 inline-block mt-4 rounded"
-            >Read more</a>
+            <div class="flex justify-between">
+              <button
+                class="bg-orange-500 hover:bg-yellow-400 text-white hover:text-black transition duration-300 px-3 py-1 inline-block mt-4 rounded"
+                id="updateButton"
+              ><span><i class="fa-regular fa-pen-to-square"></i></span></button>
+              <button
+                class="bg-red-500 hover:bg-red-400 text-white hover:text-black transition duration-300 px-3 py-1 inline-block mt-4 rounded"
+                id="deleteButton"
+                onclick="deleteTask('{{this.taskID}}')"
+              ><span><i class="fa-solid fa-trash-can"></i></span></button>
+            </div>
           </div>
         </div>
       {{/each}}

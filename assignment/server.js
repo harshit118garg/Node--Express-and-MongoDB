@@ -29,7 +29,7 @@ server.set("view engine", "handlebars");
 server.set("views", "./public");
 
 // router
-server.use("/tasks", taskRouter.router);
+server.use("/", taskRouter.router);
 
 // db connection
 conn();

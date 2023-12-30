@@ -3,7 +3,6 @@ const TaskModel = require("../models/taskSchema");
 exports.getAllTasks = async (req, res) => {
   try {
     const tasks = await TaskModel.Task.find();
-    console.log("tasks", tasks);
     res.render("tasks", { tasks: tasks });
   } catch (error) {
     console.log("error in getting info of all tasks", error);
@@ -26,11 +25,10 @@ exports.findSingleTask = async (req, res) => {
 exports.addNewTask = async (req, res) => {
   try {
     const newTask = new TaskModel.Task(req.body);
-    console.log("req.body", req.body);
     await newTask
       .save()
-      .then(() => {
-        res.status(201).json({ message: "object saved in database" });
+      .then(async () => {
+        res.status(201).redirect("/");
         console.log("object saved in database");
       })
       .catch((err) => {
@@ -69,20 +67,14 @@ exports.patchTask = async (req, res) => {
 
 exports.deleteTask = async (req, res) => {
   try {
-    await TaskModel.Task.findOneAndDelete({
+    const deletedProduct = await TaskModel.Task.findOneAndDelete({
       taskID: { $eq: req.params.taskID },
-    })
-      .then((deletedProduct) => {
-        res.status(201).json(deletedProduct);
-        console.log("object deleted successfully");
-      })
-      .catch((err) => {
-        res.status(400).json({
-          message: "error occured in deleting the task from database",
-        });
-        console.log("error occured in deleting the task from database", err);
-      });
+    });
+    res.status(201).json(deletedProduct);
   } catch (error) {
+    es.status(400).json({
+      message: "error occured in deleting the task from database",
+    });
     console.log("error in deleting the task", error);
   }
 };

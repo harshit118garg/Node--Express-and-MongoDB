@@ -11,8 +11,11 @@ const router = express.Router();
 
 router
   .get("/", getAllTasks)
+  .get("/add", (req, res) => {
+    res.render("addTask", { title: "Add New Task" });
+  })
+  .post("/add", addNewTask)
   .get("/:taskID", findSingleTask)
-  .post("/", addNewTask)
   .patch("/:taskID", patchTask)
   .delete("/:taskID", deleteTask);
 
