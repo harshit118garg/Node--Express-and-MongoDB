@@ -42,26 +42,20 @@ exports.addNewTask = async (req, res) => {
 
 exports.patchTask = async (req, res) => {
   try {
-    await TaskModel.Task.findOneAndUpdate(
+    const updatedTask = await TaskModel.Task.findOneAndUpdate(
       { taskID: { $eq: req.params.taskID } },
       req.body,
       {
         new: true,
       }
-    )
-      .then((updatedTask) => {
-        console.log("updatedTask", updatedTask);
-        res.status(201).json(updatedTask);
-        console.log("object updated successfully");
-      })
-      .catch((err) => {
-        res.status(400).json({
-          message: "error occured in updating the task to database",
-        });
-        console.log("error occured in updating the task to database", err);
-      });
+    );
+    res.status(201).redirect("/");
+    console.log("object updated successfully");
   } catch (error) {
-    console.log("error in updating the task", error);
+    res.status(400).json({
+      message: "error occured in updating the task to database",
+    });
+    console.log("error occured in updating the task to database", error);
   }
 };
 
@@ -72,7 +66,7 @@ exports.deleteTask = async (req, res) => {
     });
     res.status(201).json(deletedProduct);
   } catch (error) {
-    es.status(400).json({
+    res.status(400).json({
       message: "error occured in deleting the task from database",
     });
     console.log("error in deleting the task", error);
